@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.2.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{background:cadetblue;font-family:Arial,sans-serif;}
+header{background:rgb(77,141,144);display:flex;justify-content:space-between;align-items:center;padding:15px 30px;}
+.logo h2,nav a,.notification,.form h1,.form p{color:white;}
+nav{display:flex;gap:25px;}
+nav a{text-decoration:none;}
+.notification{position:relative;font-size:20px;}
+.notification span{position:absolute;top:-8px;right:-10px;background:red;width:18px;height:18px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:12px;}
+.body{display:flex;justify-content:center;align-items:center;height:85vh;}
+.form{background:rgb(77,141,144);padding:30px;border-radius:10px;display:flex;flex-direction:column;gap:15px;width:350px;}
+.form input,.button{padding:10px;border:none;border-radius:5px;}
+.button{background:green;color:white;cursor:pointer;}
+.button:hover{background:darkgreen;}
+.form a{color:lightblue;}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo"><h2>TextusSitus</h2></div>
+<nav>
+<a href="#">Dashboard</a>
+<a href="#">About</a>
+<a href="#">Help</a>
+</nav>
+<div class="notification">
+<i class="fa-regular fa-bell"></i>
+<span>5</span>
+</div>
+</header>
+
+<div class="body">
+<div class="form">
+<h1>Create Account</h1>
+<p>Sign up to continue</p>
+
+<input type="text" id="name" placeholder="Full Name">
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="pass" placeholder="Password">
+<input type="password" id="confirmpass" placeholder="Confirm Password">
+
+<button class="button" onclick="signup()">Sign Up</button>
+
+<p>Already have an account? <a href="NewWebsite.html">Login</a></p>
+</div>
+</div>
+
+<script>
+function signup() {
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let p = document.getElementById("pass").value;
+    let c = document.getElementById("confirmpass").value;
+
+    if (name == "" || email == "" || p == "" || c == "") {
+        alert("Fill all fields");
+        return;
+    }
+
+    if (p != c) {
+        alert("Passwords do not match");
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].email == email) {
+            alert("Email already exists");
+            return;
+        }
+    }
+
+    users.push({
+        email: email,
+        password: p
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("Account Craeted Successfully");
+    
+    window.location.href = "NewWebsite.html";
+}
+</script>
+
+</body>
+</html>

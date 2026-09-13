@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TextusSitus</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.2.0/css/all.min.css"/>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:cadetblue;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+header{
+    background:rgb(77,141,144);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
+}
+
+.logo h2{
+    color:white;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+}
+
+.notification{
+    color:white;
+    font-size:20px;
+    position:relative;
+}
+
+.notification span{
+    position:absolute;
+    top:-8px;
+    right:-10px;
+    background:red;
+    color:white;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:12px;
+}
+
+.body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:85vh;
+}
+
+.form{
+    background:rgb(77,141,144);
+    padding:30px;
+    border-radius:10px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    width:350px;
+}
+
+.form h1,
+.form p{
+    color:white;
+}
+
+.form input{
+    padding:10px;
+    border:none;
+    border-radius:5px;
+}
+
+.button{
+    padding:10px;
+    background:blue;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.button:hover{
+    background:darkblue;
+}
+
+.form a{
+    color:lightblue;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <h2>TextusSitus</h2>
+    </div>
+
+    <nav>
+        <a href="#">Dashboard</a>
+        <a href="#">About</a>
+        <a href="#">Help</a>
+    </nav>
+
+    <div class="notification">
+        <i class="fa-regular fa-bell"></i>
+        <span>5</span>
+    </div>
+
+</header>
+
+<div class="body">
+
+    <div class="form">
+        <h1>Welcome To TextusSitus</h1>
+        <p>Login to continue</p>
+
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+
+        <button class="button" onclick="login()">Click to Login</button>
+
+        <p><a href="#">Forgot Password?</a></p>
+
+        <p>Don't have an account? <a href="SignUp.html">Sign Up</a></p>
+    </div>
+
+</div>  
+
+<toast></toast>
+
+<script>
+let users = JSON.parse(localStorage.getItem("users")) || [
+    {
+        email: "a@gmail.com",
+        password: "1234"
+    },
+    {
+        email: "b@gmail.com",
+        password: "4321"
+    }
+];
+
+localStorage.setItem("users", JSON.stringify(users));
+
+function login() {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    let found = false;
+
+    for (let i = 0; i < users.length; i++) {
+        if (email == users[i].email && password == users[i].password) {
+            found = true;
+            break;
+        }
+    }
+
+    if (found) {
+        alert("Login Successful!");
+    } else {
+        alert("Login Unsuccessful!");
+    }
+}
+</script>
+
+</body>
+</html>

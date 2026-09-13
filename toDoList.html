@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Planner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 20px;
+            color: #0f172a;
+        }
+
+        #todo-app {
+            width: min(100%, 480px);
+        }
+
+        .app-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.14);
+        }
+
+        .header {
+            margin-bottom: 18px;
+        }
+
+        .header h1 {
+            font-size: 1.7rem;
+            margin-bottom: 6px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .task-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .task-form input {
+            flex: 1;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 12px 14px;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .task-form input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+        }
+
+        .task-form button,
+        .toolbar button,
+        .task-actions button {
+            border: none;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .task-form button:hover,
+        .toolbar button:hover,
+        .task-actions button:hover {
+            transform: translateY(-1px);
+        }
+
+        .task-form button {
+            background: #2563eb;
+            color: #fff;
+            min-width: 100px;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .toolbar span {
+            color: #475569;
+            font-weight: 600;
+        }
+
+        .toolbar button {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .list-section {
+            margin-top: 14px;
+        }
+
+        .list-section h2 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #334155;
+        }
+
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 12px 14px;
+        }
+
+        .task-item.completed {
+            background: #ecfdf3;
+            border-color: #86efac;
+        }
+
+        .task-text {
+            flex: 1;
+            word-break: break-word;
+        }
+
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: #64748b;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn {
+            background: #22c55e;
+            color: #fff;
+        }
+
+        .secondary-btn {
+            background: #f59e0b;
+            color: #fff;
+        }
+
+        .danger-btn {
+            background: #ef4444;
+            color: #fff;
+        }
+
+        .empty {
+            padding: 12px 0;
+            color: #64748b;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .completed-section.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="todo-app">
+        <div class="app-card">
+            <div class="header">
+                <h1>Task Planner</h1>
+                <p>Organize your day and move completed tasks out of the way.</p>
+            </div>
+
+            <form id="taskForm" class="task-form">
+                <input id="taskInput" type="text" maxlength="80" placeholder="Add a new task..." required>
+                <button type="submit">Add task</button>
+            </form>
+
+            <div class="toolbar">
+                <span id="activeCount">0 active</span>
+                <button id="toggleCompletedBtn" type="button">Show completed</button>
+            </div>
+
+            <div class="list-section">
+                <h2>Pending tasks</h2>
+                <div id="activeTasks" class="task-list"></div>
+            </div>
+
+            <div id="completedSection" class="list-section completed-section hidden">
+                <h2>Completed tasks</h2>
+                <div id="completedTasks" class="task-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="toDoList.js"></script>
+</body>
+</html>
