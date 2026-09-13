@@ -1,0 +1,161 @@
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 35px;
+  background: #f4f4f4;
+}
+
+header {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+.cart {
+  background: #222;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+}
+
+.filters {
+  max-width: 1000px;
+  margin: 30px auto;
+  display: flex;
+  gap: 10px;
+}
+
+.filters button {
+  padding: 9px 15px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.filters button:hover {
+  background: #e8e8e8;
+}
+
+.products {
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.image {
+  height: 150px;
+  background: #dedede;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.card h2 {
+  font-size: 20px;
+  margin: 8px 0;
+}
+
+.card p {
+  color: #666;
+  min-height: 40px;
+}
+
+.card h3 {
+  font-size: 22px;
+  margin: 15px 0 8px;
+}
+
+.available,
+.unavailable {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.available {
+  color: green;
+}
+
+.unavailable {
+  color: #c0392b;
+}
+
+.actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 8px;
+}
+
+.actions > button {
+  flex: 1;
+  border: none;
+  background: #222;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.quantity button {
+  border: none;
+  background: white;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.quantity span {
+  padding: 0 8px;
+}
+
+@media (max-width: 750px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .app {
+    padding: 20px;
+  }
+
+  header {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .filters {
+    flex-wrap: wrap;
+  }
+
+  .products {
+    grid-template-columns: 1fr;
+  }
+}
